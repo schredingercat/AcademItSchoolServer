@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel", "Excel\Excel.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountriesJson", "CountriesJson\CountriesJson.csproj", "{308A09CF-1A39-43D5-9EEE-1D1B06F4948D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector", "Vector\Vector.csproj", "{0A1B9F79-5FB9-4918-A170-000EDB426250}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector.Tests", "Vector.Tests\Vector.Tests.csproj", "{81D63AEC-BBFC-4480-B9FC-AC8547674227}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{308A09CF-1A39-43D5-9EEE-1D1B06F4948D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{308A09CF-1A39-43D5-9EEE-1D1B06F4948D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{308A09CF-1A39-43D5-9EEE-1D1B06F4948D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1B9F79-5FB9-4918-A170-000EDB426250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1B9F79-5FB9-4918-A170-000EDB426250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1B9F79-5FB9-4918-A170-000EDB426250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1B9F79-5FB9-4918-A170-000EDB426250}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D63AEC-BBFC-4480-B9FC-AC8547674227}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D63AEC-BBFC-4480-B9FC-AC8547674227}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D63AEC-BBFC-4480-B9FC-AC8547674227}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D63AEC-BBFC-4480-B9FC-AC8547674227}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
