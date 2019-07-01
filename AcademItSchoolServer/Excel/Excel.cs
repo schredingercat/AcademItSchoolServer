@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace Excel
 {
@@ -9,7 +11,7 @@ namespace Excel
     {
         static void Main()
         {
-            var persons = new List<Person>()
+            var persons = new List<Person>
             {
                 new Person("Ivan", "Petrov", 20, "+7 (901) 111-2222"),
                 new Person("Petr", "Ivanov", 31, "+7 (902) 222-3333"),
@@ -32,31 +34,35 @@ namespace Excel
             {
                 var sheet = package.Workbook.Worksheets.Add("Persons");
 
-                for (int i = 1; i <= persons.Count; i++)
+                sheet.Cells[1, 1].LoadFromText("First Name,Last Name,Age,Phone Number");
+                var headerCellRange = sheet.Dimension.Address;
+
+                sheet.Cells[headerCellRange].Style.Font.Bold = true;
+                sheet.Cells[headerCellRange].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                sheet.Cells[headerCellRange].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                sheet.Cells[headerCellRange].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+
+                var headerShift = sheet.Dimension.Rows + 1;
+
+                for (int i = 0; i < persons.Count; i++)
                 {
-                    var person = persons[i - 1];
-                    sheet.Cells[i, 1].Value = person.FirstName;
-                    sheet.Cells[i, 2].Value = person.LastName;
-                    sheet.Cells[i, 3].Value = person.Age;
-                    sheet.Cells[i, 4].Value = person.PhoneNumber;
+                    var person = persons[i];
+                    var rowShift = i + headerShift;
+                    sheet.Cells[rowShift, 1].Value = person.FirstName;
+                    sheet.Cells[rowShift, 2].Value = person.LastName;
+                    sheet.Cells[rowShift, 3].Value = person.Age;
+                    sheet.Cells[rowShift, 4].Value = person.PhoneNumber;
                 }
+
+                var usedCellRange = sheet.Dimension.Address;
+
+                sheet.Cells[usedCellRange].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                sheet.Cells[usedCellRange].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                sheet.Cells[usedCellRange].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                sheet.Cells[usedCellRange].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                sheet.Cells[usedCellRange].AutoFitColumns();
+
                 package.Save();
-            }
-        }
-
-        public class Person
-        {
-            public string FirstName;
-            public string LastName;
-            public int Age;
-            public string PhoneNumber;
-
-            public Person(string firstName, string lastName, int age, string phoneNumber)
-            {
-                FirstName = firstName;
-                LastName = lastName;
-                Age = age;
-                PhoneNumber = phoneNumber;
             }
         }
     }
