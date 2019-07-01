@@ -9,26 +9,23 @@ namespace Vector.Tests
         {
         }
 
-        [Test]
-        public void TestAdd(
-            [Range(0, 1, 0.1)] double x1,
-            [Range(-1, 1, 0.5)] double x2,
-            [Range(-1, 1, 0.5)] double z2)
+        [TestCase(new[] { 1.1, 2.6, 3 }, new[] { 8.1, 32, 7 }, ExpectedResult = new[] { 9.2, 34.6, 10 })]
+        [TestCase(new[] { 3.2, 5 }, new[] { 1, 2.4 }, ExpectedResult = new[] { 4.2, 7.4 })]
+        [TestCase(new[] { 10.8, 2, 3 }, new[] { 4.6 }, ExpectedResult = new[] { 15.4, 2, 3 })]
+        public double[] TestAdd(double[] components1, double[] components2)
         {
-            var vector1 = new Vector(new[] { x1, 4.5, 7 });
-            var vector2 = new Vector(new[] { x2, 5.4, z2 });
-            Assert.DoesNotThrow(() => vector1.Add(vector2));
+            var vector1 = new Vector(components1);
+            var vector2 = new Vector(components2);
+            vector1.Add(vector2);
+            return vector1.GetComponents();
         }
 
-        [Test]
-        public void TestScalarProduct(
-            [Range(0, 1, 0.1)] double x1,
-            [Range(-1, 1, 0.5)] double x2,
-            [Range(-1, 1, 0.5)] double y2)
+        [TestCase(new[] { -8.45, 5.9, -45.5, 52 }, new[] { 2.3, 4.5, 7 }, ExpectedResult = -311.385)]
+        public double TestScalarProduct(double[] components1, double[] components2)
         {
-            var vector1 = new Vector(new[] { x1, 4.5, 7 });
-            var vector2 = new Vector(new[] { x2, y2, 0.7 });
-            Assert.DoesNotThrow(() => Vector.ScalarProduct(vector1, vector2));
+            var vector1 = new Vector(components1);
+            var vector2 = new Vector(components2);
+            return Vector.ScalarProduct(vector1, vector2);
         }
     }
 }
