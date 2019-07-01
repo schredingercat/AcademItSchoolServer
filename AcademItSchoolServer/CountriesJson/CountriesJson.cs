@@ -17,7 +17,7 @@ namespace CountriesJson
             Console.WriteLine(string.Join(", ", countryNameList));
             Console.WriteLine();
 
-            var sumPopulation = countries.Select(n => int.TryParse(n.population, out var result) ? result : 0).Sum();
+            var sumPopulation = countries.Sum(n => n.population);
             Console.WriteLine($"Общее население: {sumPopulation}");
             Console.WriteLine();
 
@@ -27,18 +27,6 @@ namespace CountriesJson
             Console.WriteLine(string.Join(", ", currencies));
 
             Console.ReadLine();
-        }
-
-        public class Country
-        {
-            public string name;
-            public string population;
-            public List<Currency> currencies;
-
-            public class Currency
-            {
-                public string name;
-            }
         }
     }
 }
