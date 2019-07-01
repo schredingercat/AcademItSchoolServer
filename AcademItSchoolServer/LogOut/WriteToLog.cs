@@ -4,6 +4,8 @@ namespace LogOut
 {
     class WriteToLog
     {
+        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main()
         {
             Log.Debug("Hello");
@@ -23,7 +25,5 @@ namespace LogOut
 
             Console.ReadLine();
         }
-
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
     }
 }
