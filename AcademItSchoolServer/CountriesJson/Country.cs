@@ -4,8 +4,8 @@ namespace CountriesJson
 {
     public class Country
     {
-        public string name { get; set; }
-        public int population { get; set; }
-        public List<Currency> currencies { get; set; }
+        public string Name { get; set; }
+        public int Population { get; set; }
+        public List<Currency> Currencies { get; set; }
     }
 }
