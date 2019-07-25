@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vector.Tests", "Vector.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogOut", "LogOut\LogOut.csproj", "{C08B527F-B939-44EE-B7EC-CC51B7918A88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopEf", "ShopEf\ShopEf.csproj", "{506F399A-91DB-44CB-9474-ADBD635686AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{C08B527F-B939-44EE-B7EC-CC51B7918A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C08B527F-B939-44EE-B7EC-CC51B7918A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C08B527F-B939-44EE-B7EC-CC51B7918A88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{506F399A-91DB-44CB-9474-ADBD635686AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{506F399A-91DB-44CB-9474-ADBD635686AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{506F399A-91DB-44CB-9474-ADBD635686AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{506F399A-91DB-44CB-9474-ADBD635686AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
