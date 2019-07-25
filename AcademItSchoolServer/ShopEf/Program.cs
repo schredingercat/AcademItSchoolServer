@@ -94,6 +94,13 @@ namespace ShopEf
 
                 //#endregion
 
+                var bestSeller = dataBase.Orders.ToList().Select(x => x.Products.Select(p => p.Categories))
+                    .GroupBy(n => n)
+                    .OrderByDescending(n => n.Count())
+                    .ToList().FirstOrDefault();
+
+                Console.WriteLine(bestSeller);
+
                 var moneyByCustomer = dataBase.Orders.GroupBy(n => n.Customer)
                     .Select(g => new
                     {
