@@ -94,16 +94,16 @@ namespace ShopEf
 
                 //#endregion
 
-
-                var group = dataBase.Orders.GroupBy(n => n.Customer)
+                var moneyByCustomer = dataBase.Orders.GroupBy(n => n.Customer)
                     .Select(g => new
                     {
-                        g.Key,
-                        Total = g.Sum(s => s.Products.Select(t => t.Price).Sum() )
-                    });
+                        CustomerName = g.Select(n => n.Customer.Name).FirstOrDefault(),
+                        Total = g.Sum(s => s.Products.Select(t => t.Price).Sum())
+                    })
+                    .ToList()
+                    .Select(x => $"{x.CustomerName} : {x.Total.ToString()}");
 
-                Console.WriteLine(string.Join("\n", dataBase.Orders.Select(n => n.Products.Sum(x => x.Price))));
-
+                Console.WriteLine(string.Join("\n", moneyByCustomer));
 
             }
 
