@@ -30,7 +30,7 @@ namespace ShopEf
                 //dataBase.Categories.Add(hidCategory);
                 //dataBase.Categories.Add(componentsCategory);
 
-                //var intelCoreI7 = new Product { Name = "Intel Core i3", Categories = new List<Category> { cpuCategory, componentsCategory }, Price = 22999 };
+                //var intelCoreI7 = new Product { Name = "Intel Core i7", Categories = new List<Category> { cpuCategory, componentsCategory }, Price = 22999 };
                 //var corsairRam = new Product { Name = "Corsair XMS3", Categories = new List<Category> { ramCategory, componentsCategory }, Price = 1999 };
                 //var logitechMouse = new Product { Name = "Logitech M90", Categories = new List<Category> { mouseCategory, hidCategory }, Price = 450 };
                 //var microsoftKeyboard = new Product { Name = "Microsoft Wired Keyboard 600", Categories = new List<Category> { keyboardCategory, hidCategory }, Price = 999 };
@@ -94,6 +94,15 @@ namespace ShopEf
 
                 //#endregion
 
+                var targetCustomers = dataBase.Customers.Where(n => n.Name.Contains("Николаевич"));
+                Console.WriteLine($"Найдено Николаевичей: {targetCustomers.Count()}");
+
+                foreach (var customer in targetCustomers)
+                {
+                    customer.Name = customer.Name.Replace("Николаевич", "Сергеевич");
+                }
+                dataBase.SaveChanges();
+
                 var mostSoldProduct = dataBase.Orders
                     .SelectMany(x => x.Products)
                     .GroupBy(n => n)
@@ -110,10 +119,19 @@ namespace ShopEf
                         Total = g.Sum(s => s.Products.Select(t => t.Price).Sum())
                     })
                     .ToList()
-                    .Select(x => $"{x.CustomerName} : {x.Total.ToString()} руб.");
+                    .Select(x => $"{x.CustomerName} - {x.Total.ToString()} руб.");
 
                 Console.WriteLine("Сумма, потраченная каждым клиентом:");
                 Console.WriteLine( string.Join("\n", moneyByCustomer));
+                Console.WriteLine();
+
+                var countByCategory = dataBase.Orders
+                    .SelectMany(o => o.Products)
+                    .SelectMany(p => p.Categories)
+                    .GroupBy(n => n).OrderByDescending(n => n.Count()).ToList();
+
+                Console.WriteLine("Продано товаров каждой категории:");
+                Console.WriteLine(string.Join("\n", countByCategory.Select(n => $"{n.Key.Name} - {n.Count()} шт." )));
 
             }
 
