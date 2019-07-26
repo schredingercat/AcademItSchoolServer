@@ -94,12 +94,14 @@ namespace ShopEf
 
                 //#endregion
 
-                var bestSeller = dataBase.Orders.ToList().Select(x => x.Products.Select(p => p.Categories))
+                var mostSoldProduct = dataBase.Orders
+                    .SelectMany(x => x.Products)
                     .GroupBy(n => n)
                     .OrderByDescending(n => n.Count())
-                    .ToList().FirstOrDefault();
+                    .FirstOrDefault();
 
-                Console.WriteLine(bestSeller);
+                Console.WriteLine($"Самый продаваемый товар: {mostSoldProduct.Key.Name} ({mostSoldProduct.Count()} шт.)");
+                Console.WriteLine();
 
                 var moneyByCustomer = dataBase.Orders.GroupBy(n => n.Customer)
                     .Select(g => new
@@ -108,9 +110,10 @@ namespace ShopEf
                         Total = g.Sum(s => s.Products.Select(t => t.Price).Sum())
                     })
                     .ToList()
-                    .Select(x => $"{x.CustomerName} : {x.Total.ToString()}");
+                    .Select(x => $"{x.CustomerName} : {x.Total.ToString()} руб.");
 
-                Console.WriteLine(string.Join("\n", moneyByCustomer));
+                Console.WriteLine("Сумма, потраченная каждым клиентом:");
+                Console.WriteLine( string.Join("\n", moneyByCustomer));
 
             }
 
